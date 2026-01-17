@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://uoytenu4vpkm"]
+
+[ext_resource type="Texture2D" uid="uid://c66uptojs1t6n" path="res://Asset/pixel_art/minecraft_origins/textures/entity/skeleton/skeleton.png" id="1_kr7y1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fl7pg"]
+size = Vector2(8, 8)
+
+[node name="nether" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_kr7y1")
+region_enabled = true
+region_rect = Rect2(8, 8, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fl7pg")

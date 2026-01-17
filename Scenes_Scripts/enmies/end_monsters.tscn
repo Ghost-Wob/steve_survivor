@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkpkh5f7ybehh"]
+
+[ext_resource type="Texture2D" uid="uid://bsyj5epihbrgc" path="res://Asset/pixel_art/minecraft_origins/textures/entity/creeper/creeper.png" id="1_wymvq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fl7pg"]
+size = Vector2(8, 8)
+
+[node name="end" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_wymvq")
+region_enabled = true
+region_rect = Rect2(8, 8, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fl7pg")

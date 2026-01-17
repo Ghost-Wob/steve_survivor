@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7q24n346oshm"]
+
+[ext_resource type="Script" uid="uid://ne2uus8yj7xe" path="res://Scenes_Scripts/management/drop.gd" id="1_dmg0j"]
+
+[node name="Drop" type="Node2D" groups=["drops"]]
+script = ExtResource("1_dmg0j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

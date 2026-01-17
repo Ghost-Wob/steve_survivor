@@ -1,0 +1,6 @@
+.godot/
+*.apk
+*.apk.idsig
+*.zip
+.import/
+export_presets.cfg
