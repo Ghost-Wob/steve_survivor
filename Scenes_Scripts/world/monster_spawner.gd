@@ -93,9 +93,9 @@ func _get_zombie_data() -> Dictionary:
 	
 	return {
 		"texture": texture,
-		"move_speed": 60.0 + (current_difficulty * 10.0),
-		"damage": int(5 * current_difficulty),
-		"attack_interval": max(0.5, 1.0 - (current_difficulty * 0.1))
+		"move_speed": 60.0,
+		#"damage": int(5 * current_difficulty),
+		"attack_interval": max(0.5, 1.0)
 	}
 
 func _get_spawn_position() -> Vector2:

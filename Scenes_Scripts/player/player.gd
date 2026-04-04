@@ -192,10 +192,31 @@ func _update_health_bar() -> void:
 		health_bar_fill.color = Color(0, 0.9, 0, 1)
 	else:
 		health_bar_fill.color = Color(0.9, 0, 0, 1)
-
+# Liste des points de respawn sécurisés
+var spawn_points: Array[Vector2] = [
+	Vector2(0, 0),
+	#Vector2(500, 100),
+	#Vector2(-300, 400),
+	#Vector2(1200, -200)
+]
 func die() -> void:
 	emit_signal("player_died")
-	queue_free()
+	
+	# CHOIX ALÉATOIRE NATIF
+	# .pick_random() choisit un élément au hasard dans la liste
+	global_position = spawn_points.pick_random()
+	
+	# RESET PROPRE
+	health = max_health
+	velocity = Vector2.ZERO
+	is_invincible = false
+	modulate = Color.WHITE
+	
+	# ACTUALISATION VISUELLE (Tes fonctions existantes)
+	_update_health_bar()
+	emit_signal("health_changed", health, max_health)
+	
+	print("Respawn réussi au point : ", global_position)
 
 # =========================
 # MATERIALS (PRINT CONSOLE)
