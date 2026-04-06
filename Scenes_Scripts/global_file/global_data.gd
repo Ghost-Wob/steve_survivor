@@ -19,8 +19,24 @@ const TEXTURE_PATHS: Dictionary = {
 }
 
 # =========================
-# UPGRADE RECIPES (Minecraft-based)
-# tier_name -> materials required
+# WEAPON TEXTURE PATHS
+# Les fichiers s'appellent golden_sword, pas gold_sword
+# =========================
+const WEAPON_TEXTURE_PATHS: Dictionary = {
+	"stick":     "res://Asset/pixel_art/items/stick.png",
+	"wooden":    "res://Asset/pixel_art/weapons/swords/wooden_sword.png",
+	"stone":     "res://Asset/pixel_art/weapons/swords/stone_sword.png",
+	"gold":      "res://Asset/pixel_art/weapons/swords/golden_sword.png",
+	"iron":      "res://Asset/pixel_art/weapons/swords/iron_sword.png",
+	"diamond":   "res://Asset/pixel_art/weapons/swords/diamond_sword.png",
+	"netherite": "res://Asset/pixel_art/weapons/swords/netherite_sword.png"
+}
+
+func get_weapon_texture_path(tier_name: String) -> String:
+	return WEAPON_TEXTURE_PATHS.get(tier_name, "")
+
+# =========================
+# UPGRADE RECIPES
 # =========================
 const UPGRADE_RECIPES: Dictionary = {
 	"wooden":    {"stick": 1, "wooden": 2},
@@ -33,8 +49,6 @@ const UPGRADE_RECIPES: Dictionary = {
 
 # =========================
 # ZOMBIE DROP CHANCES
-# Ta liste de base + rarités selon le tier de l'épée
-# 1.0 = 100%, ajustable après tests
 # =========================
 const ZOMBIE_DROPS: Dictionary = {
 	"stick":     0.8,
