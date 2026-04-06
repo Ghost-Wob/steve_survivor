@@ -184,4 +184,3 @@ monster_scene = ExtResource("5_o721c")
 position = Vector2(8, 8)
 
 [node name="GameUI" parent="." unique_id=723152723 instance=ExtResource("6_ky3jg")]
-script = null

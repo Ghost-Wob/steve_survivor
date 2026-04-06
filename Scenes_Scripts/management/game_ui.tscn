@@ -5,3 +5,7 @@
 [node name="GameUI" type="CanvasLayer"]
 layer = 10
 script = ExtResource("1_n464i")
+
+[node name="Base" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
