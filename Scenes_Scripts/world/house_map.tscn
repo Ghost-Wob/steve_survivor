@@ -1,9 +1,6 @@
 [gd_scene format=4 uid="uid://ve72nw6q6kyi"]
 
-[ext_resource type="Texture2D" path="res://Asset/map/minecraft/texture.png" id="1_qp6nu"]
-
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n7xep"]
-texture = ExtResource("1_qp6nu")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0

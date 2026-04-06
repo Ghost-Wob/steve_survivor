@@ -2,19 +2,6 @@ extends Node2D
 class_name Drop
 
 # =========================
-# TEXTURE PATHS
-# =========================
-const TEXTURE_PATHS: Dictionary = {
-	"stick": "res://Asset/pixel_art/items/stick.png",
-	"wooden": "res://Asset/pixel_art/items/oak_planks.png",
-	"stone": "res://Asset/pixel_art/items/stone.png",
-	"gold": "res://Asset/pixel_art/items/gold_ingot.png",
-	"iron": "res://Asset/pixel_art/items/iron_ingot.png",
-	"diamond": "res://Asset/pixel_art/items/diamond.png",
-	"netherite": "res://Asset/pixel_art/items/netherite_ingot.png"
-}
-
-# =========================
 # STATE
 # =========================
 var material_type: String = "gold"
@@ -45,8 +32,8 @@ func _load_texture() -> void:
 		sprite.scale = Vector2(2, 2)
 		add_child(sprite)
 	
-	if TEXTURE_PATHS.has(material_type):
-		var path: String = TEXTURE_PATHS[material_type]
+	if GlobalData.TEXTURE_PATHS.has(material_type):
+		var path: String = GlobalData.TEXTURE_PATHS[material_type]
 		if ResourceLoader.exists(path):
 			sprite.texture = load(path)
 		else:

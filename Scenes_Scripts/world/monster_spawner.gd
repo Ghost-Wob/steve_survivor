@@ -14,13 +14,6 @@ class_name MonsterSpawner
 @export var monsters_per_wave: int = 1
 
 # =========================
-# DIFFICULTY SCALING
-# =========================
-@export var difficulty_increase_time: float = 30.0
-var current_difficulty: float = 1.0
-var time_elapsed: float = 0.0
-
-# =========================
 # INTERNAL
 # =========================
 var player: Player = null
@@ -46,11 +39,6 @@ func _ready() -> void:
 		await get_tree().create_timer(spawn_delay).timeout
 		spawn_wave()
 		spawn_timer.start()
-
-func _process(delta: float) -> void:
-	# Increase difficulty over time
-	time_elapsed += delta
-	current_difficulty = 1.0 + (time_elapsed / difficulty_increase_time) * 0.5
 
 func _find_player() -> Player:
 	var players := get_tree().get_nodes_in_group("player")
@@ -94,8 +82,7 @@ func _get_zombie_data() -> Dictionary:
 	return {
 		"texture": texture,
 		"move_speed": 60.0,
-		#"damage": int(5 * current_difficulty),
-		"attack_interval": max(0.5, 1.0)
+		"attack_interval": 1.0
 	}
 
 func _get_spawn_position() -> Vector2:
