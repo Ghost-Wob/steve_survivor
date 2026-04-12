@@ -20,7 +20,7 @@ var drop_scene: PackedScene = null
 # =========================
 var health: int
 var player: Player
-var can_attack: bool   = true
+var can_attack: bool    = true
 var attack_timer: Timer
 var attack_range: float = 20.0
 
@@ -37,35 +37,31 @@ var attack_range: float = 20.0
 func _ready() -> void:
 	add_to_group("monsters")
 	health = max_health
-
 	if ResourceLoader.exists(DROP_SCENE_PATH):
 		drop_scene = load(DROP_SCENE_PATH)
 	else:
 		push_error("[Monster] Drop scene introuvable : " + DROP_SCENE_PATH)
-
 	attack_timer = Timer.new()
-	attack_timer.one_shot    = true
-	attack_timer.wait_time   = attack_interval
+	attack_timer.one_shot  = true
+	attack_timer.wait_time = attack_interval
 	add_child(attack_timer)
 	attack_timer.timeout.connect(_on_attack_cooldown_end)
 	_update_health_bar()
 
 func setup(data: Dictionary, target_player: Player) -> void:
-	player         = target_player
-	move_speed     = data.get("move_speed",     move_speed)
-	damage         = data.get("damage",         damage)
+	player          = target_player
+	move_speed      = data.get("move_speed",      move_speed)
+	damage          = data.get("damage",          damage)
 	attack_interval = data.get("attack_interval", attack_interval)
 	attack_timer.wait_time = attack_interval
-	if data.has("texture"):
-		sprite.texture = data["texture"]
+	if data.has("texture"): sprite.texture = data["texture"]
 
 # =========================
 # MOVEMENT
 # =========================
 func _physics_process(_delta: float) -> void:
 	if not is_instance_valid(player): return
-	var dir := (player.global_position - global_position).normalized()
-	velocity = dir * move_speed
+	velocity = (player.global_position - global_position).normalized() * move_speed
 	move_and_slide()
 	_try_attack_player()
 
@@ -88,8 +84,7 @@ func take_damage(amount: int) -> void:
 	_update_health_bar()
 	modulate = Color.RED
 	create_tween().tween_property(self, "modulate", Color.WHITE, 0.1)
-	if health <= 0:
-		die()
+	if health <= 0: die()
 
 # =========================
 # HEALTH BAR
@@ -101,10 +96,9 @@ func _update_health_bar() -> void:
 	health_bar_fill.color  = Color(0, 0.9, 0, 1) if pct > 0.1 else Color(0.9, 0, 0, 1)
 
 # =========================
-# DEATH + DROP + XP
+# DEATH + DROPS + XP
 # =========================
 func die() -> void:
-	# Donne de l'XP au joueur
 	if is_instance_valid(player):
 		player.add_xp(GlobalData.XP_PER_KILL)
 	_spawn_drops()
@@ -115,15 +109,20 @@ func _spawn_drops() -> void:
 		push_error("[Monster] Cannot drop — scene non chargée")
 		return
 
+	# Drops de matériaux (skip si inutile pour le joueur)
 	for mat_type in GlobalData.ZOMBIE_DROPS.keys():
 		var chance: float = GlobalData.ZOMBIE_DROPS[mat_type]
-
-		# Ne pas dropper une ressource inutile — garde l'écran propre
 		if is_instance_valid(player) and player.is_material_useless(mat_type):
 			continue
-
 		if randf() <= chance:
 			_spawn_single_drop(mat_type, 1)
+
+	# Drop de la craft table — taux = même que la ressource la plus basse utile
+	if is_instance_valid(player):
+		var lowest_mat: String = player.get_lowest_useful_material()
+		var table_chance: float = GlobalData.ZOMBIE_DROPS.get(lowest_mat, 0.001)
+		if randf() <= table_chance:
+			_spawn_single_drop("craft_table", 1)
 
 func _spawn_single_drop(mat_type: String, amount: int) -> void:
 	var drop: Node = drop_scene.instantiate()

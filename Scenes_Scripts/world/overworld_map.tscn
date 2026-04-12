@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://b8enhvh66mixx" path="res://Scenes_Scripts/world/monster_spawner.gd" id="4_2kk8p"]
 [ext_resource type="PackedScene" uid="uid://dd5vw76hfq8du" path="res://Scenes_Scripts/enmies/overworld_monsters.tscn" id="5_o721c"]
 [ext_resource type="PackedScene" uid="uid://03uveydbeho5" path="res://Scenes_Scripts/management/game_ui.tscn" id="6_ky3jg"]
+[ext_resource type="Script" uid="uid://csgxwhaxmowq7" path="res://Scenes_Scripts/world/fog.gd" id="6_l1jyp"]
 
 [sub_resource type="GDScript" id="GDScript_aoifp"]
 script/source = "extends Node2D
@@ -184,3 +185,6 @@ monster_scene = ExtResource("5_o721c")
 position = Vector2(8, 8)
 
 [node name="GameUI" parent="." unique_id=723152723 instance=ExtResource("6_ky3jg")]
+
+[node name="FogLayer" type="CanvasLayer" parent="." unique_id=2084377987]
+script = ExtResource("6_l1jyp")
