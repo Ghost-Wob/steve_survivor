@@ -117,14 +117,14 @@ const CONVERSION_RATIO: int = 16
 # ZOMBIE DROPS (÷10 vs version précédente)
 # =========================
 const ZOMBIE_DROPS: Dictionary = {
-	"stick":     08,
-	"wooden":    05,
-	"stone":     025,
-	"gold":      015,
-	"iron":      008,
-	"diamond":   003,
-	"netherite": 001,
-	"apple":     04
+	"stick":     0.8,
+	"wooden":    0.5,
+	"stone":     0.25,
+	"gold":      0.15,
+	"iron":      0.08,
+	"diamond":   0.03,
+	"netherite": 0.01,
+	"apple":     0.4
 }
 
 # =========================
