@@ -1,6 +1,8 @@
 .godot/
+.tmp/
+export_preset.cfg
+android/build/
+*.x86_64
+*.aar
+*.so
 *.apk
-*.apk.idsig
-*.zip
-.import/
-export_presets.cfg
